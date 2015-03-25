@@ -10,7 +10,7 @@ import com.almworks.sqlite4java.SQLiteException;
 import com.almworks.sqlite4java.SQLiteStatement;
 
 public class DBManager {
-
+	public static String db_file;
 	public static final String default_db_file = "SOA.db";
 	
 	File dbFile;
@@ -211,8 +211,9 @@ public class DBManager {
 				int guessed_time = query.columnInt(DBTables.Data.Column.guessed_time.ordinal());
 				int certainty = query.columnInt(DBTables.Data.Column.certainty.ordinal());
 				int loudness = query.columnInt(DBTables.Data.Column.loudness.ordinal());
+				int correctness = query.columnInt(DBTables.Data.Column.correct_key.ordinal());
 
-				all_experiment_data.addResult(subject_id, block_v, block_id, new TrialResult(real_time, guessed_time, certainty, loudness));
+				all_experiment_data.addResult(subject_id, block_v, block_id, new TrialResult(real_time, guessed_time, certainty, loudness, correctness == 1));
 			}
 			query.dispose();
 		} catch (SQLiteException e) {
@@ -236,7 +237,7 @@ public class DBManager {
 			insertResult(subject_id, version, block, r);
 	}
 	
-	public void insertResult(int subject_id, int version, int block, TrialResult result)
+	private void insertResult(int subject_id, int version, int block, TrialResult result)
 	{		
 		SQLiteConnection db = null;
 		try {
@@ -273,6 +274,7 @@ public class DBManager {
 			st.bind(5, result.guessed_time);
 			st.bind(6, result.certainty);
 			st.bind(7, result.loudness);
+			st.bind(8, result.correct_key_pressed ? 1 : 0);
 			st.step();
 			st.dispose();
 		} catch (SQLiteException e) {

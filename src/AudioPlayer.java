@@ -10,7 +10,7 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 
-public class AudioPlayer implements Runnable{
+public class AudioPlayer implements Runnable{	
 	private final int EXTERNAL_BUFFER_SIZE = 524288;
 	
     SourceDataLine auline;

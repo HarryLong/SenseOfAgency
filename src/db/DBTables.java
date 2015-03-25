@@ -34,7 +34,8 @@ public class DBTables {
 			real_time("real_time", SQLITE_TYPE.INTEGER),
 			guessed_time("guessed_time", SQLITE_TYPE.INTEGER),
 			certainty("certainty", SQLITE_TYPE.INTEGER),
-			loudness("loudness", SQLITE_TYPE.INTEGER);
+			loudness("loudness", SQLITE_TYPE.INTEGER),
+			correct_key("correct_key", SQLITE_TYPE.INTEGER);
 						
 			Column(String name, String type)
 			{
@@ -55,6 +56,7 @@ public class DBTables {
 						Column.guessed_time.name + " " + Column.guessed_time.type + "," +
 						Column.certainty.name + " " + Column.certainty.type + "," +
 						Column.loudness.name + " " + Column.loudness.type + "," +
+						Column.correct_key.name + " " + Column.correct_key.type + "," +
 
 						/* FOREIGN KEYS */
 						"FOREIGN KEY(" +Column.subject_id.name + ") REFERENCES " + Subjects.table_name + "(" + Subjects.Column._id.name + ") ON UPDATE CASCADE ON DELETE CASCADE" +	

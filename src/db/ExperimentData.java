@@ -34,6 +34,12 @@ public class ExperimentData extends HashMap<Integer,HashMap<Integer,HashMap<Inte
 		get(subject_id).get(version_id).get(block_id).addAll(results);
 	}
 	
+	public void removeResults(int subject_id, int version_id, int block_id)
+	{
+		if(hasSubject(subject_id) && hasVersion(subject_id, version_id) && hasBlock(subject_id, version_id, block_id))
+			get(subject_id).get(version_id).get(block_id).clear();
+	}
+	
 	// Subject
 	public boolean hasSubject(int subject_id)
 	{
@@ -68,7 +74,7 @@ public class ExperimentData extends HashMap<Integer,HashMap<Integer,HashMap<Inte
 		get(subject_id).get(version_id).put(block_id, new ArrayList<TrialResult>());
 	}
 	
-	public static final String _COLUMNS = "Subject, version, block, trial, real time, guessed time, certainty, loudness " + System.lineSeparator();
+	public static final String _COLUMNS = "Subject, version, block, trial, real time, guessed time, certainty, loudness, correct key pressed " + System.lineSeparator();
 	public boolean export(FileWriter fw, Map<Integer, Subject> subject_id_to_subject_mapper) throws IOException
 	{
 		fw.write(_COLUMNS);
@@ -87,10 +93,11 @@ public class ExperimentData extends HashMap<Integer,HashMap<Integer,HashMap<Inte
 						fw.write(version  + ",");
 						fw.write(block + ",");
 						fw.write(i++ + ",");
-						fw.write(result.real_time + ",");
+						fw.write((((result.real_time%(2560))/2560.0f)*60) + ",");
 						fw.write(result.guessed_time + ",");
 						fw.write(result.certainty + ",");
 						fw.write(result.loudness + ",");
+						fw.write((result.correct_key_pressed ? "True" : "False") + ",");
 						fw.write(System.lineSeparator());
 					}
 				}

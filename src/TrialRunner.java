@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.attribute.standard.MediaSize.Other;
+
 import db.TrialResult;
 
 public class TrialRunner implements CallbackListener{	
@@ -23,24 +25,32 @@ public class TrialRunner implements CallbackListener{
 	
 	AudioPlayer _player;
 	
-	Color[] _clockFaceColors;
-	Map<Color, Integer> _colorToKeycodeMapper;	
+	Color[] _triggerClockFaceColors;
+	Color[] _otherClockFaceColors;
+	Map<Color, Integer> _colorToKeycodeMapper;
 	int _current_color_index;
+	int _count_since_trigger_color;
+	boolean _trigger_color_active;
 	ColorChangerTrigger _colorChangerTrigger;
+	
 	Thread _colorChangerThread;
-	static final int _COLOR_CHANGE_MIN = 1500; //ms
-	static final int _COLOR_CHANGE_MAX = 2500; //ms
+	static final int _COLOR_CHANGE_MIN = 2000; //ms
+	static final int _COLOR_CHANGE_MAX = 3000; //ms
 
 	public TrialRunner(ClockPanel clockPanel)
 	{
 		_trial_completion_listeners = new ArrayList<CallbackListener>();
-		_player = new AudioPlayer("beep.wav");
+		_player = new AudioPlayer("beep_short.wav");
 
-		_clockFaceColors = new Color[] {Color.BLUE, Color.YELLOW, Color.RED};
+		_triggerClockFaceColors = new Color[] {Color.RED, Color.GREEN, Color.BLUE};
+		_otherClockFaceColors = new Color[] {Color.CYAN, Color.MAGENTA, Color.ORANGE, Color.PINK};
+		_trigger_color_active = false;
+		_count_since_trigger_color = 0;
+		
 		_colorToKeycodeMapper = new HashMap<Color, Integer>();
-		_colorToKeycodeMapper.put(Color.BLUE, KeyEvent.VK_B);
-		_colorToKeycodeMapper.put(Color.YELLOW, KeyEvent.VK_Y);
 		_colorToKeycodeMapper.put(Color.RED, KeyEvent.VK_R);
+		_colorToKeycodeMapper.put(Color.GREEN, KeyEvent.VK_G);
+		_colorToKeycodeMapper.put(Color.BLUE, KeyEvent.VK_B);
 		_current_color_index = 0;
 		_colorChangerTrigger = new ColorChangerTrigger(this);
 		_colorChangerThread = new Thread(_colorChangerTrigger);
@@ -76,6 +86,7 @@ public class TrialRunner implements CallbackListener{
 	{
 		_command_index = -1;
 		_time_index = _range_index = 0;
+		_count_since_trigger_color = 0;
 		_results.reset();
 	}
 	
@@ -187,18 +198,26 @@ public class TrialRunner implements CallbackListener{
 	{
 		if(_waiting_for_key)
 		{
-			if((!_block_settings.colorChanging) || keycode == _colorToKeycodeMapper.get(_clockFaceColors[_current_color_index]))
-			{
-				_results.real_time = _clockPanel.getClockHandPosition();
-				processCommand();
-			}
+			_results.real_time = _clockPanel.getClockHandPosition();
+			_results.correct_key_pressed = _trigger_color_active && keycode == _colorToKeycodeMapper.get(_triggerClockFaceColors[_current_color_index]);
+			processCommand();
 		}
 	}
 	
 	public int changeColor()
 	{
-		_current_color_index = ((_current_color_index+1) % _clockFaceColors.length);
-		_clockPanel.setClockFaceColor(_clockFaceColors[_current_color_index]);		
+		if(_count_since_trigger_color++ > _otherClockFaceColors.length) // Trigger response color
+		{
+			_trigger_color_active = true;
+			_current_color_index = ((_current_color_index+1) % _triggerClockFaceColors.length);
+			_count_since_trigger_color = 0;
+			_clockPanel.setClockFaceColor(_triggerClockFaceColors[_current_color_index]);		
+		}
+		else
+		{
+			_trigger_color_active = false;
+			_clockPanel.setClockFaceColor(_otherClockFaceColors[getRandom(0, _otherClockFaceColors.length)]);		
+		}
 		return getRandom(_COLOR_CHANGE_MIN, _COLOR_CHANGE_MAX);
 	}
 	

@@ -44,7 +44,7 @@ public class BlockSettingsFactory {
 
 	private static BlockSettings getV1Block1()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 1, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 1, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		
@@ -68,7 +68,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block2()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 2, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 2, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		
@@ -95,7 +95,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block3()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 3, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 3, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		addFixedWait(settings.commands, settings.fixed_times, 1000); // Wait 1 second
@@ -123,7 +123,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block4()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 4, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 4, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		addFixedWait(settings.commands, settings.fixed_times, 1000); // Wait 1 second
@@ -152,7 +152,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV2Block1()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 2, 1, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 2, 1, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		
@@ -176,7 +176,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV2Block2()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 2, 2, false);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 2, 2, true);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		

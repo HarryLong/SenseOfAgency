@@ -86,10 +86,10 @@ public class BlockRunnerPanel extends JPanel implements CallbackListener{
 				return "b_press_action";
 			}
 		};
-		Action y_action = new AbstractAction() {
+		Action g_action = new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				_trialRunner.keyPressed(KeyEvent.VK_Y);
+				_trialRunner.keyPressed(KeyEvent.VK_G);
 			}
 			@Override
 			public String toString() {
@@ -111,15 +111,14 @@ public class BlockRunnerPanel extends JPanel implements CallbackListener{
 				space_action.toString());
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("B"),
 				b_action.toString());
-		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("Y"),
-				y_action.toString());
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("G"),
+				g_action.toString());
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("R"),
 				r_action.toString());
-		
 
 		getActionMap().put(space_action.toString(), space_action);
 		getActionMap().put(b_action.toString(), b_action);
-		getActionMap().put(y_action.toString(), y_action);
+		getActionMap().put(g_action.toString(), g_action);
 		getActionMap().put(r_action.toString(), r_action);
 	}
 

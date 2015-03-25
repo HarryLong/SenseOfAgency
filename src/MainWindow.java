@@ -34,6 +34,7 @@ import db.DBManager;
 import db.ExperimentData;
 import db.Subject;
 import db.TrialResult;
+import dialogs.PreBlockDialogContent;
 
 
 public class MainWindow extends JFrame implements CallbackListener{
@@ -72,6 +73,9 @@ public class MainWindow extends JFrame implements CallbackListener{
 		setSize(new Dimension(1000, 1000));
 		setLocationRelativeTo(null);	
 		actionListener = new MyActionListener();
+		
+		// Load the settings
+		
 		
 		_db = new DBManager();
 		_all_experiment_data = _db.getData();
@@ -118,9 +122,12 @@ public class MainWindow extends JFrame implements CallbackListener{
     
     private void runBlock(int version, int block)
     {
-    	_blockRunner.setSettings(_block_settings_factory.generate(version, block), _overviewPanel.getSelectedSubject().id);
-    	setActiveCard(Card.BlockRunner);
-    	_blockRunner.startBlock();
+    	if( JOptionPane.showConfirmDialog(this, PreBlockDialogContent.getDialogContent(version, block) +  "\nReady?") == JOptionPane.OK_OPTION)
+    	{
+        	_blockRunner.setSettings(_block_settings_factory.generate(version, block), _overviewPanel.getSelectedSubject().id);
+        	setActiveCard(Card.BlockRunner);
+        	_blockRunner.startBlock();
+    	}
     }
 	
 	private void initMenu()
@@ -202,7 +209,8 @@ public class MainWindow extends JFrame implements CallbackListener{
 		List<TrialResult> results = _blockRunner.getBlockResults();
 		BlockSettings settings = _blockRunner.getSettings();
 		int subject_id = _blockRunner.getSubjectId();
-
+		
+		_all_experiment_data.removeResults(subject_id, settings.version, settings.block);
 		_all_experiment_data.addResults(subject_id, settings.version, settings.block, results);
 		_db.insertResults(subject_id, settings.version, settings.block, results);
 		_overviewPanel.refreshStatuses();

@@ -95,8 +95,8 @@ public class ClockPanel extends JPanel {
 		int base_tick_start_x = radius - _HALF_TICK_LENGTH;
 		int base_tick_end_x = base_tick_start_x + (2*_HALF_TICK_LENGTH);
 		int base_tick_y	= 0;
-		int x_offset = centering_x_padding + clock_padding + _HALF_TICK_LENGTH + radius;
-		int y_offset  = centering_y_padding + clock_padding + _HALF_TICK_LENGTH + radius;
+		int x_offset = centering_x_padding + clock_padding + radius;
+		int y_offset  = centering_y_padding + clock_padding + radius;
 
 	    AffineTransform transform = new AffineTransform();
 		for(double angle = -_HALF_PI; angle < 3 * _HALF_PI; angle += increments, tick_idx++)

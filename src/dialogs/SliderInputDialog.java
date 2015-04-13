@@ -53,7 +53,7 @@ public class SliderInputDialog extends JDialog implements ChangeListener{
         // First the title
         c.gridwidth = 3;
         JLabel title_lbl = new JLabel(_message);
-        add(title_lbl, c);
+        contentPane.add(title_lbl, c);
         
         c.gridy++;
 
@@ -107,24 +107,6 @@ public class SliderInputDialog extends JDialog implements ChangeListener{
 		_slider_value_lbl.setText(Integer.toString(_slider.getValue()));
 	}
 	
-	public static class PressedInputDialog extends SliderInputDialog
-	{
-		public PressedInputDialog(JFrame parent)
-		{
-			super(parent, "Please answer", "At what position was the clock when you pressed the button?",
-					0,60,0);
-		}
-	}
-	
-	public static class ToneInputDialog extends SliderInputDialog
-	{
-		public ToneInputDialog(JFrame parent)
-		{
-			super(parent, "Please answer", "At what position was the clock when you heard the tone?",
-					0,60,0);
-		}
-	}
-	
 	public static class CertaintyInputDialog extends SliderInputDialog
 	{
 		public CertaintyInputDialog(JFrame parent)
@@ -139,7 +121,7 @@ public class SliderInputDialog extends JDialog implements ChangeListener{
 		public LoudnessInputDialog(JFrame parent)
 		{
 			super(parent, "Please answer", "How loud would you rate the tone?",
-					0,10,0);
+					0,100,0);
 		}
 	}
 }

@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BlockSettingsFactory {
-	public static final int _RUN_COUNT = 2;
+	public static final int _RUN_COUNT = 20;
 	
 	BlockSettings[][] _blockSettings;
 	
@@ -44,7 +42,7 @@ public class BlockSettingsFactory {
 
 	private static BlockSettings getV1Block1()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 1, true);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 1, false);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		
@@ -68,7 +66,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block2()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 2, true);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 2, false);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		
@@ -95,7 +93,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block3()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 3, true);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 3, false);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		addFixedWait(settings.commands, settings.fixed_times, 1000); // Wait 1 second
@@ -123,7 +121,7 @@ public class BlockSettingsFactory {
 	
 	private static BlockSettings getV1Block4()
 	{
-		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 4, true);
+		BlockSettings settings = new BlockSettings(_RUN_COUNT, 1, 4, false);
 		
 		settings.commands.add(Commands.RESET_CLOCK); // Reset clock
 		addFixedWait(settings.commands, settings.fixed_times, 1000); // Wait 1 second

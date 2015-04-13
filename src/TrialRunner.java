@@ -52,10 +52,11 @@ public class TrialRunner implements CallbackListener{
 		_colorToKeycodeMapper.put(Color.GREEN, KeyEvent.VK_G);
 		_colorToKeycodeMapper.put(Color.BLUE, KeyEvent.VK_B);
 		_current_color_index = 0;
+		
 		_colorChangerTrigger = new ColorChangerTrigger(this);
 		_colorChangerThread = new Thread(_colorChangerTrigger);
 		_colorChangerThread.start();
-		
+
 		_results = new TrialResult();
 		this._clockPanel = clockPanel;
 		reset();
@@ -199,7 +200,8 @@ public class TrialRunner implements CallbackListener{
 		if(_waiting_for_key)
 		{
 			_results.real_time = _clockPanel.getClockHandPosition();
-			_results.correct_key_pressed = _trigger_color_active && keycode == _colorToKeycodeMapper.get(_triggerClockFaceColors[_current_color_index]);
+			_results.correct_key_pressed = !_block_settings.colorChanging || 
+					(_trigger_color_active && keycode == _colorToKeycodeMapper.get(_triggerClockFaceColors[_current_color_index]));
 			processCommand();
 		}
 	}

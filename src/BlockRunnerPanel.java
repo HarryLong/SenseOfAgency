@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import db.TrialResult;
+import dialogs.NumberInputDialog.PressedInputDialog;
+import dialogs.NumberInputDialog.ToneInputDialog;
 import dialogs.SliderInputDialog;
 import dialogs.SliderInputDialog.CertaintyInputDialog;
 import dialogs.SliderInputDialog.LoudnessInputDialog;
-import dialogs.SliderInputDialog.PressedInputDialog;
-import dialogs.SliderInputDialog.ToneInputDialog;
 
 
 public class BlockRunnerPanel extends JPanel implements CallbackListener{

@@ -34,7 +34,9 @@ public class PreBlockDialogContent {
 			+ "- At the time of YOUR choosing (not the clocks choosing!), click the space bar.\n"
 			+ "- The clock will stop rotating.\n" 
 			+ "\nAt the end of the run, you will be asked the following question:\n" 
-			+ "- At what position was the clock hand when you pressed the space bar?\n";
+			+ "- At what position was the clock hand when you pressed the space bar?\n\n"
+			+ "IMPORTANT: Do not pre-select a time and then push the button when the "
+			+ "clock hand gets there, rather press the button when the urge to do so spontaneously comes to you \n";
 	
 	public static final String BLOCK_1_2 = "Instructions:\n"
 			+ "- The clock will start spinning at a rate of one rotation every 2560 ms.\n"
@@ -50,7 +52,9 @@ public class PreBlockDialogContent {
 			+ "- An audible tone will be emitted.\n"
 			+ "- The clock will stop rotating.\n" 
 			+ "\nAt the end of the run, you will be asked the following question:\n" 
-			+ "- At what position was the clock hand when you pressed the space bar?\n";
+			+ "- At what position was the clock hand when you pressed the space bar?\n\n"
+			+ "IMPORTANT: Do not pre-select a time and then push the button when the "
+			+ "clock hand gets there, rather press the button when the urge to do so spontaneously comes to you \n";
 	
 	public static final String BLOCK_1_4 = "Instructions:\n"
 			+ "- The clock will start spinning at a rate of one rotation every 2560 ms.\n"
@@ -59,7 +63,9 @@ public class PreBlockDialogContent {
 			+ "- The clock will stop rotating.\n" 
 			+ "\nAt the end of the run, you will be asked the following question:\n" 
 			+ "- At what position was the clock hand when you heard the tone?\n"
-			+ "- With what certainty do you think you caused the tone to?\n";
+			+ "- With what certainty do you think you caused the tone to?\n\n"
+			+ "IMPORTANT: Do not pre-select a time and then push the button when the "
+			+ "clock hand gets there, rather press the button when the urge to do so spontaneously comes to you \n";
 	
 	
 	public static final String BLOCK_2_1 = "Instructions:\n"
@@ -67,7 +73,9 @@ public class PreBlockDialogContent {
 			+ "- At the time of YOUR choosing (not the clocks choosing!), click the space bar.\n"
 			+ "- The clock will stop rotating.\n" 
 			+ "\nAt the end of the run, you will be asked the following question:\n" 
-			+ "- At what position was the clock hand when you pressed the space bar?\n";
+			+ "- At what position was the clock hand when you pressed the space bar?\n\n"
+			+ "IMPORTANT: Do not pre-select a time and then push the button when the "
+			+ "clock hand gets there, rather press the button when the urge to do so spontaneously comes to you \n";
 	
 	public static final String BLOCK_2_2 = "Instructions:\n"
 			+ "- The clock will start spinning at a rate of one rotation every 2560 ms.\n"
